@@ -1,0 +1,159 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Register.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Filling Form</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+             <section id="main_content">
+                <section id="wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                    
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    <div class="col-md-12">
+                                        <h1>Đăng ký khách hàng</h1>
+                                    </div>
+                                </header>
+                            </section>
+
+                            <section class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <h3>Thông tin đăng nhập</h3>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <asp:Label Text="Tên đăng nhập" runat="server"/>
+                                                    <asp:TextBox runat="server" ID="txtTenDN" Enabled="true" CssClass="form-control input-sm" placeholder="Tên đăng nhập"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="rf_TenDN" ControlToValidate="txtTenDN" runat="server" ErrorMessage="Tên đăng nhập không được rỗng"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <asp:Label Text="Mật khẩu" runat="server"/>
+                                                    <asp:TextBox runat="server" ID="txtMK" TextMode="Password" Enabled="true" CssClass="form-control input-sm" placeholder="Mật khẩu"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="rf_MK" ControlToValidate="txtMK" runat="server" ErrorMessage="Mật khẩu không được rỗng"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <asp:Label Text="Nhập lại mật khẩu" runat="server"/>
+                                                    <asp:TextBox runat="server" ID="txtNhaplaiMK" TextMode="Password" Enabled="true" CssClass="form-control input-sm" placeholder="Nhập lại mật khẩu"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="rf_Nhaplai" ControlToValidate="txtNhaplaiMK" Display="Dynamic" runat="server" ErrorMessage="Nhập lại mật khẩu không được rỗng"></asp:RequiredFieldValidator>
+                                                    <asp:CompareValidator ID="cv_Nhaplai" ControlToValidate="txtNhaplaiMK" ControlToCompare="txtMK" runat="server" ErrorMessage="Mật khẩu nhập lại chưa đúng"></asp:CompareValidator>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3>Chi tiết khách hàng</h3>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <asp:Label Text="Họ tên khách hàng" runat="server"/>
+                                                    <asp:TextBox runat="server" ID="txtKH" Enabled="true" CssClass="form-control input-sm" placeholder="Họ tên khách hàng"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="rf_KH" ControlToValidate="txtKH" runat="server" ErrorMessage="Họ tên khách hàng không được rỗng"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <asp:Label Text="Ngày sinh" runat="server"/>
+                                                            <asp:TextBox runat="server" ID="txtNgaySinh" TextMode="Date" Enabled="true" CssClass="form-control input-sm" placeholder="Ngày sinh"></asp:TextBox>
+                                                            <asp:CompareValidator ID="cv_Ngaysinh" Text="(*)" ControlToValidate="txtNgaySinh" Operator="DataTypeCheck" Type="Date" runat="server" ErrorMessage="Ngày sinh không hợp lệ"></asp:CompareValidator>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <asp:Label Text="Giới tính" runat="server"/>
+                                                    <div class="col-md-off-1">
+                                                        <asp:RadioButton ID="radNam" Text="Nam" runat="server"/>
+                                                    </div>
+                                                    <div class="col-md-off-1">
+                                                        <asp:RadioButton ID="radNu" Text="Nữ" runat="server"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <asp:Label Text="Email" runat="server"/>
+                                                    <asp:TextBox runat="server" ID="txtEmail" Enabled="true" CssClass="form-control input-sm" placeholder="Email"></asp:TextBox>
+                                                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="txtEmail" ErrorMessage="Email không hợp lệ"></asp:RegularExpressionValidator>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <asp:Label Text="Thu nhập" runat="server"/>
+                                                    <asp:TextBox runat="server" ID="txtThuNhap" Enabled="true" CssClass="form-control input-sm" placeholder="Thu nhập"></asp:TextBox>
+                                                    <asp:RangeValidator ID="rvThuNhap" ControlToValidate="txtThuNhap" MaximumValue="50000000" MinimumValue="1000000" Type="Integer" runat="server" ErrorMessage="Thu nhập từ 1 triệu đến 50 triệu"></asp:RangeValidator>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="padding-left:35px">
+                                        <asp:Button Text="Đăng ký" ID="btnDangKy" CssClass="btn btn-primary btn-lg" Width="200px" OnClick="btnDangKy_Click" runat="server"></asp:Button>
+                                        <asp:Label ID="Label1" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="col-md-6" style="padding-top:20px; padding-left:40px"><div class="row">
+                                            <asp:Label ID="lblThongBao" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="row">
+                                            <asp:ValidationSummary ID="vsTonghop" HeaderText="Danh sách các lỗi" runat="server" />
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </section>
+
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Design By Vanb1606951</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
